@@ -140,7 +140,8 @@ public func fetchContacts(ContactsSortorder sortOrder: CNContactSortOrder, compl
 public func fetchContactsOnBackgroundThread(completionHandler: @escaping (_ result: ContactsFetchResult) -> ()) {
 
     DispatchQueue.global(qos: .userInitiated).async(execute: { () -> () in
-        let fetchRequest: CNContactFetchRequest = CNContactFetchRequest(keysToFetch: [CNContactVCardSerialization.descriptorForRequiredKeys()])
+        let keysToFetch: [CNKeyDescriptor] = [CNContactIdentifierKey as CNKeyDescriptor, CNContactGivenNameKey as CNKeyDescriptor, CNContactFamilyNameKey as CNKeyDescriptor, CNContactPhoneNumbersKey as CNKeyDescriptor, CNContactImageDataAvailableKey as CNKeyDescriptor, CNContactImageDataKey as CNKeyDescriptor, CNContactViewController.descriptorForRequiredKeys(), CNContactVCardSerialization.descriptorForRequiredKeys()]
+        let fetchRequest: CNContactFetchRequest = CNContactFetchRequest(keysToFetch: keysToFetch)
         var contacts = [CNContact]()
         CNContact.localizedString(forKey: CNLabelPhoneNumberiPhone)
         if #available(iOS 10.0, *) {
