@@ -23,6 +23,7 @@
 
 import Foundation
 import Contacts
+import ContactsUI
 
 #if os(OSX)
 import Cocoa
