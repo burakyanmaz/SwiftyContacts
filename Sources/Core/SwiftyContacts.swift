@@ -150,8 +150,8 @@ public func fetchContactsOnBackgroundThread(completionHandler: @escaping (_ resu
         } else {
             // Fallback on earlier versions
         }
-        fetchRequest.unifyResults = true
-        fetchRequest.sortOrder = .userDefault
+        // fetchRequest.unifyResults = true
+        // fetchRequest.sortOrder = .userDefault
         do {
             try CNContactStore().enumerateContacts(with: fetchRequest) { (contact, _) -> () in
                 contacts.append(contact)
